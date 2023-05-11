@@ -5,12 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+       .inputfield{
+        display: flex;
+        margin-top: 10px;
+       } 
+       .registerbtn{
+        margin-top: 10px;
+       }
+    </style>
 </head>
 <body>
-    <h2 id="title">Objects in local storag</h2>
+    <form id="contactForm" >
+        <div class="container">
+            <h1>Registration form</h1>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class= "inputfield" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class= "inputfield" required>
+
+            <label for="number">Phone number</label>
+            <input type="number" name="number" id="number" class= "inputfield">
+
+            <button type="submit" class="registerbtn" onclick="test()">Submit</button>
+        </div>
+    </form>
+
+
 
 </body>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     let myObj={
         name:"Bhawna",
         age:26
@@ -24,5 +50,36 @@
 
     let myObj_deserialized= JSON.parse(getItem("myObj"))
     console.log(myObj_deserialized);
+</script> -->
+<script>
+    function test(){
+        var uid = document.getElementById("name").value;
+        var emailId = document.getElementById("email").value;
+        var phoneNumber = document.getElementById("number").value;
+
+        // alert(uid + emailId + phoneNumber);
+        // storing data
+        var user=localStorage.setItem("uid", uid)
+        var email = localStorage.setItem("emailId", emailId);
+        var number = localStorage.setItem("phoneNumber", phoneNumber);
+
+        var user=localStorage.getItem("uid", uid)
+        var email = localStorage.getItem("emailId", emailId);
+        var number = localStorage.getItem("phoneNumber", phoneNumber);
+
+        var a, b,c;
+        a="Bhawna";
+        b = "bk123@gmail.com";
+        c=9843848543;
+
+        if(a==user &&  b == email && c== number)
+        {
+            alert("Successful");
+        }
+        else{
+            alert("invalid detail")
+        }
+    }
+   
 </script>
 </html>
