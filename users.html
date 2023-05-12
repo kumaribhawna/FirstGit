@@ -17,8 +17,7 @@
     </style>
 </head>
 <body>
-    <form id="contactForm" >
-        <div class="container">
+    <form onsubmit="saveToLocalStorage(event)">
             <h1>Registration form</h1>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class= "inputfield" required>
@@ -27,58 +26,52 @@
             <input type="email" name="email" id="email" class= "inputfield" required>
 
             <label for="number">Phone number</label>
-            <input type="number" name="number" id="number" class= "inputfield">
+            <input type="tel" name="number" id="number" class= "inputfield">
 
-            <button type="submit" class="registerbtn" onclick="test()">Submit</button>
-        </div>
+            <button type="submit">Submit</button>
     </form>
+    <ul id="listOfitem"></ul>
 
 
 
 </body>
-<!-- <script type="text/javascript">
-    let myObj={
-        name:"Bhawna",
-        age:26
-    };
 
-    let myObj_serialized = JSON.stringify(myObj); 
-    console.log(myObj_serialized)
-
-    localStorage.setItem('myObj', myObj_serialized);
-    console.log(localStorage);
-
-    let myObj_deserialized= JSON.parse(getItem("myObj"))
-    console.log(myObj_deserialized);
-</script> -->
 <script>
-    function test(){
-        var uid = document.getElementById("name").value;
-        var emailId = document.getElementById("email").value;
-        var phoneNumber = document.getElementById("number").value;
+    // function test(){
+    //     var uid = document.getElementById("name").value;
+    //     var emailId = document.getElementById("email").value;
+    //     var phoneNumber = document.getElementById("number").value;
 
-        // alert(uid + emailId + phoneNumber);
-        // storing data
-        var user=localStorage.setItem("uid", uid)
-        var email = localStorage.setItem("emailId", emailId);
-        var number = localStorage.setItem("phoneNumber", phoneNumber);
+    //     var user=localStorage.setItem("uid", uid)
+    //     var email = localStorage.setItem("emailId", emailId);
+    //     var number = localStorage.setItem("phoneNumber", phoneNumber);
 
-        var user=localStorage.getItem("uid", uid)
-        var email = localStorage.getItem("emailId", emailId);
-        var number = localStorage.getItem("phoneNumber", phoneNumber);
+    //     var user=localStorage.getItem("uid", uid)
+    //     var email = localStorage.getItem("emailId", emailId);
+    //     var number = localStorage.getItem("phoneNumber", phoneNumber);
 
-        var a, b,c;
-        a="Bhawna";
-        b = "bk123@gmail.com";
-        c=9843848543;
+    
+    // }
 
-        if(a==user &&  b == email && c== number)
-        {
-            alert("Successful");
+    function saveToLocalStorage(event){
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const pNumber = event.target.number.value;
+
+        const obj={
+            name,
+            email,
+            pNumber
         }
-        else{
-            alert("invalid detail")
-        }
+        localStorage.setItem(obj.email,JSON.stringify(obj))
+        showUsersOnScreen(obj)
+    }
+    function showUsersOnScreen(obj){
+        const parentElem = document.getElementById("listOfitem")
+        const childElem = document.createElement('li');
+        childElem.textContent =  obj.name + '-' + obj.email + "-" + obj.pNumber;
+        parentElem.appendChild(childElem);
     }
    
 </script>
