@@ -34,6 +34,7 @@
 
 
 
+
 </body>
 
 <script>
@@ -70,9 +71,28 @@
     function showUsersOnScreen(obj){
         const parentElem = document.getElementById("listOfitem")
         const childElem = document.createElement('li');
+        
+        //delete event
+        parentElem.addEventListener('click', removeItem);
+
+        var deletebtn = document.createElement('button');
+        deletebtn.innerText= "DELETE"
+        deletebtn.className='deletebtn'
+
+        var editbtn = document.createElement('button');
+        editbtn.innerText= "EDIT"
+        editbtn.className='editbtn'
+        // childElem.appendChild(deletebtn);
         childElem.textContent =  obj.name + '-' + obj.email + "-" + obj.pNumber;
-        parentElem.appendChild(childElem);
+        childElem.append(deletebtn);
+        childElem.append(editbtn);
+        parentElem.append(childElem);
+
+        function removeItem(e){
+            parentElem.removeChild(childElem);
+        }
     }
+
    
 </script>
 </html>
